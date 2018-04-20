@@ -35,3 +35,12 @@ def read_file():
         data_list.sort(key=itemgetter(1, 2))#list the songs by their Artist name then by their released year
         data_list.append(data)#adds the edited version of the csv file (data) to the data_list
     file.close()
+
+def count_songs():
+    songs = 0
+    for song in range(len(data_list)):
+        songs += 1
+    return songs
+
+
+main()
