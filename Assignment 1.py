@@ -76,7 +76,7 @@ def complete_song():
             else:
                 break
         except ValueError:
-            print("Invlaid input; enter a valid number")
+            print("Invalid input; enter a valid number")
 
     for index, data in enumerate(data_list):
         if index == respond:
@@ -86,4 +86,45 @@ def complete_song():
             else :
                 print("You have already learned {}".format(data[0]))
 
+def add_song():
+    song_add = []
+    while True:
+        title = str(input("Title: "))
+        if title == "": #prevent the user inserting a blank input
+            print("Input can not be blank")
+        else:
+            break
+    song_add.append(title)#add a new info (title) to the song_add
+
+    while True:
+        artist = str(input("Artist: "))
+        if artist == "":#prevent the user inserting a blank input
+            print("Input can not be blank")
+        else:
+            break
+    song_add.append(artist)#add a new info (title) to the song_add
+
+    while True:
+        try:
+            year = int(input("Year: "))
+            if year <= 0:#to prevent the user inserting negative numbers
+              print("Number must be >=0")
+            else :
+                break
+        except ValueError:
+            print("Invalid input; enter a valid number")
+    song_add.append(str(year))#add a new info (title) to the song_add
+    print("{} by {} ({}) added to song list".format(title, artist, year))
+    song_add.append("y")#to add the status of the new song (in this case not learned)
+    data_list.append(song_add)
+    data_list.sort(key=itemgetter(1,2))
+
+def quit_program():
+    count_songs()
+    print("{} songs saved to songs.csv".format(count_songs()))
+    file_overwrite = open(songs_file, "w") #clear the the songs_file
+    for song in data_list:
+        new_file = "{},{},{},{}".format(song[0],song[1],song[2],song[3]) + "\n"
+        file_overwrite.write(new_file) #write teh new file with the new song to the cleared song_file
+    file_overwrite.close()
 main()
