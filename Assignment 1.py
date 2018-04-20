@@ -42,5 +42,26 @@ def count_songs():
         songs += 1
     return songs
 
+def valid_answer(choice):
+    while choice !="L" and choice !="A" and choice !="C" and choice!="Q" : #program will keep on asking for other input until the user give the right input
+        print("Invalid menu choice")
+        print("Menu :")
+        print("L - List songs\nA - Add new song\nC - Complete a song\nQ - Quit")
+        choice = input(">>>")
+        choice = choice.upper()
+    return choice
+
+def list_song():
+    learned = 0 #start the variable learned as 0
+    notlearned = 0 #start the variable notlearned as 0
+    for index, data in enumerate(data_list):
+        if data[3] == "y":
+            print(index,"* {:40s} - {:30s} ({})".format(data[0], data[1], data[2]))
+            notlearned += 1
+        else:
+            print(index, "{:42s} - {:30s} ({})".format(data[0], data[1], data[2]))
+            learned += 1
+    print("{} songs learned, {} songs still need to learn".format(learned,notlearned))
+
 
 main()
