@@ -22,7 +22,7 @@ def main():
             complete_song()
         if answer == "A":
             add_song()
-        elif answer == "Q":
+        if answer == "Q":
             quit_program()
             break
     print("Thank you, bye !")
@@ -63,5 +63,27 @@ def list_song():
             learned += 1
     print("{} songs learned, {} songs still need to learn".format(learned,notlearned))
 
+def complete_song():
+    songs_amount=int(count_songs())#counts the amount of song at the moment
+    print("Enter a number of a song to mark as learned")
+    while True:
+        try:
+            respond = int(input(">>>"))
+            if respond >= songs_amount :
+                print ("Invalid song number")
+            elif respond < 0 :
+                print ("Number must be >= 0")
+            else:
+                break
+        except ValueError:
+            print("Invlaid input; enter a valid number")
+
+    for index, data in enumerate(data_list):
+        if index == respond:
+            if data[3] == "y":
+                data[3] = "n"
+                print("{} by {} learned".format(data[0], data[1]))
+            else :
+                print("You have already learned {}".format(data[0]))
 
 main()
