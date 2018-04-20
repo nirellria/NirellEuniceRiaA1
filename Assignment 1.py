@@ -26,3 +26,12 @@ def main():
             quit_program()
             break
     print("Thank you, bye !")
+
+def read_file():
+    file = open(songs_file, "r")
+    for data in file.readlines():
+        data = data.strip()#delete the white spaces within the csv file
+        data = data.split(",")
+        data_list.sort(key=itemgetter(1, 2))#list the songs by their Artist name then by their released year
+        data_list.append(data)#adds the edited version of the csv file (data) to the data_list
+    file.close()
